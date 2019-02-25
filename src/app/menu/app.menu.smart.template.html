@@ -1,0 +1,28 @@
+
+Name is {{name}} and version is {{version}}
+
+Dish : {{mintexDish.name}}
+<table border="1">
+    <thead>
+        <th>Name</th>
+        <th>Price</th>
+    </thead>
+    <tbody  *ngFor="let singleDish of menu">
+        <tr>
+            <menu-dish [myDishHere] = "singleDish"></menu-dish>
+        </tr>
+    </tbody>
+</table>
+
+Sum of 1 + 1 = {{1 + 1}}
+<br>
+Speed : <input name="speed" type="number" [value]="inputValue"> <br>
+<!--accelerate By : <input type="number" [ngModel]="increaseByValue" 
+(ngModelChange)="handleChange($event)">-->
+
+accelerate By : <input type="number" [(ngModel)]="increaseByValue">
+<br>
+
+<button (click)="accelrate()">Accelarate</button>
+
+<!--<menu-dish></menu-dish>-->
