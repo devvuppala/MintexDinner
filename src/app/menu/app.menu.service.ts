@@ -1,24 +1,17 @@
 import { Dish } from "./app.dish.model";
 import { Injectable } from "@angular/core";
+import { Http } from "@angular/http"
+import { Observable, ObservableLike } from "rxjs";
 
+const dishesService = 'http://my-json-server.typicode.com/devvuppala/restuarentMintexServiceJSON/blob/master/dishes'
 @Injectable()
 export class menuService {
 
-    getDishes() : Dish[] {
-        return [{
-            id: 1,
-            name:'Panner Butter Masala' ,
-            price: 9.99
-        },
-        {
-            id: 2,
-            name:'Biryani' ,
-            price: 9.99
-        },
-        {
-            id: 3,
-            name:'Chicken' ,
-            price: 19.99
-        }]
+    constructor(private http : Http) {
+
+    }
+
+    getDishes() {
+       return this.http.get(dishesService);
     }
 }

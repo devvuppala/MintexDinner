@@ -1,28 +1,30 @@
 
-Name is {{name}} and version is {{version}}
+<div class="text-right">
+    <button class="btn btn-primary justify-content-end" >Cart({{cartCount}})</button>
+</div>
+<br>
+<div class="card">
+<div class="card-body" *ngFor="let singleDish of menu">
+    <menu-dish [myDishHere] = "singleDish" (addedToCart)="handleTheEmit($event)"></menu-dish>
+</div>
+</div>
 
-Dish : {{mintexDish.name}}
-<table border="1">
-    <thead>
-        <th>Name</th>
-        <th>Price</th>
-    </thead>
-    <tbody  *ngFor="let singleDish of menu">
-        <tr>
-            <menu-dish [myDishHere] = "singleDish"></menu-dish>
-        </tr>
-    </tbody>
-</table>
 
-Sum of 1 + 1 = {{1 + 1}}
+
+
+<!--Dish : {{mintexDish.name}}-->
+
+
+
+<!--Sum of 1 + 1 = {{1 + 1}}
 <br>
 Speed : <input name="speed" type="number" [value]="inputValue"> <br>
 <!--accelerate By : <input type="number" [ngModel]="increaseByValue" 
 (ngModelChange)="handleChange($event)">-->
 
-accelerate By : <input type="number" [(ngModel)]="increaseByValue">
+<!--accelerate By : <input type="number" [(ngModel)]="increaseByValue">
 <br>
 
-<button (click)="accelrate()">Accelarate</button>
+<button (click)="accelrate()">Accelarate</button>-->
 
 <!--<menu-dish></menu-dish>-->
