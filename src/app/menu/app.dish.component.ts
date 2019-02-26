@@ -3,7 +3,8 @@ import { Dish } from "./app.dish.model";
 
 @Component({
     selector:'menu-dish',
-    template:`      
+    template:`  
+        <ng-content></ng-content>    
         {{myDishHere.name}}
         {{myDishHere.price}}
         Quant = {{myDishHere.quantity}}
