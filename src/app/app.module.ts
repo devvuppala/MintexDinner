@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { MenuModule } from './menu/menu.module';
+import { AdsModule } from './advertisement/ads.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { MenuModule } from './menu/menu.module';
   ],
   imports: [
     BrowserModule,
-    MenuModule
+    MenuModule,
+    AdsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

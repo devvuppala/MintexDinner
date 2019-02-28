@@ -1,13 +1,12 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter, SimpleChanges, OnChanges, SimpleChange } from "@angular/core";
 import { Dish } from "./app.dish.model";
 
 @Component({
     selector:'menu-dish',
     template:`  
-        <ng-content></ng-content>    
+            
         {{myDishHere.name}}
-        {{myDishHere.price}}
-        Quant = {{myDishHere.quantity}}
+        {{myDishHere.price + priceDifference}}
         <div class="input-group mb-3">
         <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01">Quantity</label>
@@ -22,19 +21,42 @@ import { Dish } from "./app.dish.model";
         <button class="btn btn-success" 
             (click)="addThisToCart(myQuantityTemRef.value)">Add To Cart</button>
         </div>
+        <!-- Dish number : <ng-content></ng-content>
+         Dish number alias name : {{index}}-->
         
         
     `
 })
 
-export class MenuDishComponent {
+export class MenuDishComponent implements OnChanges {
     
     @Input() myDishHere : Dish;
+    //@Input('myIndex') index: number;
+    @Input() priceDifference: number;
+
+    private _index: number;
+
+    @Input()
+    set index(inputIndex: number) {
+        this._index = inputIndex + 5;
+    }
+
+    get index() {
+        return this._index;
+    }
 
     @Output() addedToCart: EventEmitter<any> = new EventEmitter<any>();
 
     addThisToCart(quantity) {
         this.addedToCart.emit({dish : this.myDishHere, quantity: parseInt(quantity), date: new Date()});
+    }
+
+    ngOnChanges(change: {[propKey: string]: SimpleChange}) {
+        console.log("ng on changes");
+    }
+
+    changeName() {
+        this.myDishHere.name = this.myDishHere.name + ' modified';
     }
 
 }

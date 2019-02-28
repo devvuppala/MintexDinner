@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnChanges, SimpleChanges } from "@angular/core";
 import { Dish } from "./app.dish.model";
 import { MenuDishComponent } from "./app.dish.component";
 import { menuService } from "./app.menu.service";
@@ -9,28 +9,63 @@ import { menuService } from "./app.menu.service";
     styleUrls:['app.menu.styles.css']
 })
 
-export class MenuSmartComponent implements OnInit{
+export class MenuSmartComponent implements OnInit, OnChanges{
 
     constructor(private menuService : menuService) {
-        console.log('constructor');
+        setTimeout(() => {
+            this.menu.push(this.mintexDish);
+        }, 9000)
     }
     name: string = "Mintex Dinner Smart Component Updated";
     version: number = 10.00;
     mintexDish: Dish = {
-       id: 1,
-       name:'Panner' ,
-       price: 9.99
+       id: 5,
+       name:'Pushed Dish' ,
+       price: 99.99
     }
 
     menu: Dish[] = [];
     cartCount: number = 0;
+    priceDifference: number = 0;
 
     ngOnInit() {
         this.menuService.getDishes().subscribe((value) => {
             this.menu = value.json() as Dish[];
         });
+      console.log('ngOnInint')  ;
         
     }
+
+    ngOnChanges( change: SimpleChanges) {
+        console.log("ng on changes");
+        console.log(change['menu'])
+    }
+
+    ngDoCheck() {
+        console.log('do check');
+    }
+
+    ngAfterContentInit() {
+        console.log('ngAfterContentInit');
+    }
+
+    ngAfterContentChecked() {
+        console.log('ngAfterContentChecked');
+    }
+
+    ngAfterViewInit() {
+        console.log('ngAfterViewInit'); 
+    }
+
+    ngAfterViewChecked() {
+        console.log('ngAfterViewChecked'); 
+    }
+
+    ngOnDestroy(){
+        console.log('Bye! Menu Smart conponent destroyed');
+    }
+
+    
     
 
     inputValue: number = 5000;
@@ -43,5 +78,13 @@ export class MenuSmartComponent implements OnInit{
     handleTheEmit(dataEmitted: any) {
         console.log(dataEmitted.date);
         this.cartCount = this.cartCount + <number>dataEmitted.quantity;
+    }
+
+    increasePrice() {
+        this.priceDifference = this.priceDifference + 1;
+    }
+
+    decreasePrice() {
+        this.priceDifference = this.priceDifference - 1;
     }
 }
