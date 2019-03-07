@@ -9,7 +9,7 @@ import { menuService } from "./app.menu.service";
     styleUrls:['app.menu.styles.css']
 })
 
-export class MenuSmartComponent implements OnInit, OnChanges{
+export class MenuSmartComponent{
 
     constructor(private menuService : menuService) {
         setTimeout(() => {
@@ -24,6 +24,8 @@ export class MenuSmartComponent implements OnInit, OnChanges{
        price: 99.99
     }
 
+    showPriceInput: boolean = true;
+
     menu: Dish[] = [];
     cartCount: number = 0;
     priceDifference: number = 0;
@@ -36,34 +38,34 @@ export class MenuSmartComponent implements OnInit, OnChanges{
         
     }
 
-    ngOnChanges( change: SimpleChanges) {
-        console.log("ng on changes");
-        console.log(change['menu'])
-    }
+    // ngOnChanges( change: SimpleChanges) {
+    //     console.log("ng on changes");
+    //     console.log(change['menu'])
+    // }
 
-    ngDoCheck() {
-        console.log('do check');
-    }
+    // ngDoCheck() {
+    //     console.log('do check');
+    // }
 
-    ngAfterContentInit() {
-        console.log('ngAfterContentInit');
-    }
+    // ngAfterContentInit() {
+    //     console.log('ngAfterContentInit');
+    // }
 
-    ngAfterContentChecked() {
-        console.log('ngAfterContentChecked');
-    }
+    // ngAfterContentChecked() {
+    //     console.log('ngAfterContentChecked');
+    // }
 
-    ngAfterViewInit() {
-        console.log('ngAfterViewInit'); 
-    }
+    // ngAfterViewInit() {
+    //     console.log('ngAfterViewInit'); 
+    // }
 
-    ngAfterViewChecked() {
-        console.log('ngAfterViewChecked'); 
-    }
+    // ngAfterViewChecked() {
+    //     console.log('ngAfterViewChecked'); 
+    // }
 
-    ngOnDestroy(){
-        console.log('Bye! Menu Smart conponent destroyed');
-    }
+    // ngOnDestroy(){
+    //     console.log('Bye! Menu Smart conponent destroyed');
+    // }
 
     
     

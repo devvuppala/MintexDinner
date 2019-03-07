@@ -5,6 +5,8 @@ import { MenuSmartComponent } from './app.menu.smart.component';
 import { MenuDishComponent } from './app.dish.component';
 import { menuService } from './app.menu.service';
 import { HttpModule } from '@angular/http';
+import { ValidateInputDirective } from '../directives/app.attr.dir.inputColor';
+import { NgNotIfDirective } from '../directives/app.str.dir.ngNotIf';
 
 @NgModule({
   imports: [
@@ -12,7 +14,7 @@ import { HttpModule } from '@angular/http';
     FormsModule,
     HttpModule
   ],
-  declarations: [MenuSmartComponent, MenuDishComponent],
+  declarations: [MenuSmartComponent, MenuDishComponent,ValidateInputDirective,NgNotIfDirective],
   providers:[menuService],
   exports:[MenuSmartComponent]
 })

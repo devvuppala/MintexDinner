@@ -6,7 +6,7 @@ import { Dish } from "./app.dish.model";
     template:`  
             
         {{myDishHere.name}}
-        {{myDishHere.price + priceDifference}}
+        {{myDishHere.price + priceDifference | currency : 'INR' : true}}
         <div class="input-group mb-3">
         <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01">Quantity</label>

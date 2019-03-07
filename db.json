@@ -1,0 +1,27 @@
+{
+    "books":[{
+        "id" : 1,
+        "name": "Head First Java",
+        "price": 2999.99
+    },
+    {
+        "id" : 2,
+        "name": "C Plus Plus",
+        "price": 15000.99
+    },
+    {
+        "id" : 3,
+        "name": "Python",
+        "price": 99999.99
+    },
+    {
+        "id" : 4,
+        "name": "Angular 7",
+        "price": 3900009.99
+    },
+    {
+        "id" : 5,
+        "name": "Outliers",
+        "price": 19.99
+    } ]
+}

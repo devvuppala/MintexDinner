@@ -1,0 +1,18 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price($)</th>
+            <th scope="col">Price(INR)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let book of myBooks">
+        <th scope="row">{{book.id}}</th>
+        <td>{{book.name | uppercase }}</td>
+        <td>{{book.price | currency : 'USD' : 'symbol'}}</td>
+        <td>{{book.price | myCurrencyConvertor : 'usDollar' : 'INR' | currency : 'INR' : 'symbol'}}</td>
+        </tr>
+    </tbody>
+    </table>
