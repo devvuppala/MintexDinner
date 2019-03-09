@@ -7,6 +7,7 @@ import { AdsModule } from './advertisement/ads.module';
 import { BooksModule } from './books/app.books.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CurrencyConvertorPipe } from './pipes/app.usdToINR.pipe';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CurrencyConvertorPipe } from './pipes/app.usdToINR.pipe';
     MenuModule,
     AdsModule,
     BooksModule,
-    HttpClientModule
+    HttpClientModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]

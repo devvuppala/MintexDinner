@@ -23,5 +23,50 @@
         "id" : 5,
         "name": "Outliers",
         "price": 19.99
-    } ]
+    } ],
+
+    "users" : [
+        {
+            "id": 1,
+            "name": "dev",
+            "emailID": "dev@mintex.com",
+            "password": "angular"
+        },
+        {
+            "id": 2,
+            "name": "steve",
+            "emailID": "steve@mintex.com",
+            "password": "angular"
+        },
+        {
+            "id": 3,
+            "name": "kevin",
+            "emailID": "kevin@mintex.com",
+            "password": "angular"
+        },
+        {
+            "id": 4,
+            "name": "Shrey",
+            "emailID": "Shrey@mintex.com",
+            "password": "angular"
+        },
+        {
+            "id": 5,
+            "name": "Tanvi",
+            "emailID": "Tanvi@mintex.com",
+            "password": "angular"
+        },
+        {
+            "id": 6,
+            "name": "Nista",
+            "emailID": "Nista@mintex.com",
+            "password": "angular"
+        },
+        {
+            "id": 7,
+            "name": "rashmi",
+            "emailID": "rashmi@mintex.com",
+            "password": "angular"
+        }
+    ]
 }
