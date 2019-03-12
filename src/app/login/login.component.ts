@@ -25,15 +25,17 @@ export class LoginComponent {
     }
 
     loginUser() {
-        this.userService.validateUser(this.user).subscribe((returnedUser: User[]) =>{
-            if(returnedUser != null && returnedUser.length != 0) {
-                this.loginMessage = "Logged in succesfully!"
-                this.user = returnedUser[0];
-                this.loginSucess = true;
-            } else {
-                this.loginMessage = "Login Failed";
-                this.loginSucess = false;
-            }
-        })
+        // this.userService.validateUser(this.user).subscribe((returnedUser: User[]) =>{
+        //     if(returnedUser != null && returnedUser.length != 0) {
+        //         this.loginMessage = "Logged in succesfully!"
+        //         this.user = returnedUser[0];
+        //         this.loginSucess = true;
+        //     } else {
+        //         this.loginMessage = "Login Failed";
+        //         this.loginSucess = false;
+        //     }
+        // })
+        let returneUser = this.userService.validateUser(this.user);
+        console.log(returneUser)
     }
 }

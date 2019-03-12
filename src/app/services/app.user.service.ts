@@ -11,9 +11,14 @@ export class UserService {
 
     }
 
-    validateUser(user: User): Observable<User[]> {
+    validateUser(user: User): User[] {
         let parameter = "emailID=" + user.emailID + "&password=" + user.password
-        return this.http.get<User[]>(JSON_SERVICE + "/users?" + parameter);
+        let returnedUser: User[] = [];
+        this.http.get<User[]>(JSON_SERVICE + "/users?" + parameter)
+        .subscribe((retuned: User[]) => {
+            returnedUser = retuned;
+        });
+        return returnedUser; 
     }
 
 }
