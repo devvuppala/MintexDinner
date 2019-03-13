@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { BooksService } from '../services/app.book.service';
 import { Book } from './app.book.model';
 import { Form, NgForm } from '@angular/forms';
@@ -8,7 +8,7 @@ import { Form, NgForm } from '@angular/forms';
   templateUrl: './app.books.root.component.html',
   styleUrls: ['./app.books.css']
 })
-export class BooksRootComponent implements OnInit {
+export class BooksRootComponent implements OnInit, OnChanges {
 
     name: string = "Book Component test";
     myBooks: Book[] = [];
@@ -16,6 +16,10 @@ export class BooksRootComponent implements OnInit {
     showAddCard: boolean = false;
     newBook: Book = new Book(0,null,0);
     bookAddError: boolean = false;
+    showEditCard: boolean = false;
+    bookShowCard: boolean = false;
+    bookTobeEdited: Book = new Book(0,null,0); 
+    bookEditError: boolean = false;
 
     constructor(private bookService : BooksService) {
 
@@ -27,8 +31,13 @@ export class BooksRootComponent implements OnInit {
         })
     }
 
+
     enableOrDisableCard() {
         this.showAddCard = !this.showAddCard;
+    }
+
+    enableOrDisableEditCard() {
+        this.showEditCard = !this.showEditCard;
     }
 
     addABook(book) { 
@@ -47,6 +56,37 @@ export class BooksRootComponent implements OnInit {
         })
 
     }
+    
+
+    editABook(book: Book) { 
+        //this.bookTobeEdited = book;
+        //this.bookTobeEdited = new Book(book.id,book.name,book.price);
+        Object.assign(this.bookTobeEdited , book);
+        //console.log(this.bookTobeEdited);
+        this.showEditCard = true;
+    }
+
+    saveABook() { 
+        this.bookService.updateBook(this.bookTobeEdited).subscribe((bookEdited: Book) => {
+            let updatedBooks: Book[] = [];
+            this.myBooks.forEach((book: Book) => {
+                if(book.id === bookEdited.id) {
+                    updatedBooks.push(bookEdited);
+                } else {
+                    updatedBooks.push(book);
+                }
+            })
+
+            this.myBooks = updatedBooks;
+            this.showEditCard = false;
+        },
+        error => {
+            console.log("Error");
+            this.bookEditError = true;
+        })
+
+    }
+    
 
     deleteBook(bookToBeDeleted : Book) {
         this.bookService.deleteBook(bookToBeDeleted).subscribe((returnData: any) =>{
