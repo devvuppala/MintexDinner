@@ -4,14 +4,16 @@ import { BooksRootComponent } from './app.books.component';
 import { BooksService } from '../services/app.book.service';
 import { CurrencyConvertorPipe } from '../pipes/app.usdToINR.pipe';
 import { FormsModule } from '@angular/forms';
+import { MyCustomPipesSharedModule } from '../pipes/app.pipe.module';
 
 @NgModule({
   declarations: [
-    BooksRootComponent, CurrencyConvertorPipe
+    BooksRootComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    MyCustomPipesSharedModule
   ],
   providers: [BooksService],
   exports: [BooksRootComponent]

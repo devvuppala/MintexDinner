@@ -1,9 +1,19 @@
 <div class="card">
     <div class="card-header" style="background-color: wheat">
-        Books<button class="btn btn-success float-right" (click)="enableOrDisableCard()">&nbsp;Add(+)&nbsp;</button>
+            <i class="text-left">Books</i>
+            <button class="btn btn-success float-right" (click)="enableOrDisableCard()">&nbsp;Add(+)&nbsp;</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="inline-block float-right">
+            <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Search Books</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="searchValue" aria-label="Enter Book Name">
+            </div>
+            </div>
+        
     </div>
     <div class="card-body">
-    <table class="table table-bordered">
+    <table class="table table-bordered shadow" >
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -14,7 +24,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let book of myBooks">
+        <tr *ngFor="let book of myBooks | myCustomFilterPipe : searchValue : 'name'">
         <th scope="row">{{book.id}}</th>
         <td>{{book.name | uppercase }}</td>
         <td>{{book.price | currency : 'USD' : 'symbol'}}</td>
@@ -26,7 +36,7 @@
     </table>
     </div>
 </div>
-<div class="card" *ngIf="showAddCard">
+<div class="card shadow" *ngIf="showAddCard ">
     <div class="card-header" style="background-color: pink">
         {{newBookMessage}}<button class="btn btn-danger float-right" (click)="enableOrDisableCard()">&nbsp;X&nbsp;</button>
     </div>
@@ -54,7 +64,7 @@
     </div>
 </div>
 
-<div class="card" *ngIf="showEditCard">
+<div class="card shadow" *ngIf="showEditCard">
     <div class="card-header" style="background-color: green">
         Edit<button class="btn btn-danger float-right" (click)="enableOrDisableEditCard()">&nbsp;X&nbsp;</button>
     </div>

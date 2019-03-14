@@ -21,4 +21,8 @@ export class UserService {
         return returnedUser; 
     }
 
+    getAllUsers() : Observable<User[]> {
+       return this.http.get<User[]>(JSON_SERVICE + "/users");
+    }
+
 }

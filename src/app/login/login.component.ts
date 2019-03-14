@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { User } from "./login.user.model";
 import { UserService } from "../services/app.user.service";
 import { ComponentFactoryResolver } from "@angular/core/src/render3";
@@ -9,10 +9,12 @@ import { ComponentFactoryResolver } from "@angular/core/src/render3";
     styleUrls:['app.login.css']
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit {
     loginHeaderText = "Login";
     loginMessage: string = null;
     loginSucess: boolean = false;
+    usersFromDB: User[] = [];
+    searchEmailIDValue: string = null;
     user: User = {
         id: 0,
         name: null,
@@ -37,5 +39,15 @@ export class LoginComponent {
         // })
         let returneUser = this.userService.validateUser(this.user);
         console.log(returneUser)
+    }
+
+    ngOnInit() {
+        this.getUsers()
+    }
+    getUsers() {
+        this.userService.getAllUsers().subscribe((users: User[]) => {
+            console.log(users)
+            this.usersFromDB = users;
+        })
     }
 }

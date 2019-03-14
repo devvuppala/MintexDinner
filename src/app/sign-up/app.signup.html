@@ -1,0 +1,82 @@
+    <div class="card shadow">
+        <div class="card-header" style="background-color: lightblue">
+            Sign up
+        </div>
+        <div class="card-body">
+            <form (ngSubmit)="registerUser(signUpForm)" #signUpForm="ngForm">
+            <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">User Name</span>
+            </div>
+            <input type="text" 
+                class="form-control" 
+                placeholder="Username" 
+                aria-label="Username" 
+                required
+                minlength="5"
+                [(ngModel)]="userToBeRegistered.name"
+                name="name"
+                #userName="ngModel"
+                aria-describedby="basic-addon1">                
+            </div>
+            <div *ngIf="userName.touched">
+            <div *ngIf="userName.errors?.required" class="validationErrorMessage">
+                Username is required
+            </div>
+            <div *ngIf="userName.errors?.minlength" class="validationErrorMessage">
+                Please enter atleast 5 characters
+            </div>
+            </div>
+            
+            <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Email ID</span>
+            </div>
+            <input type="text" 
+                class="form-control" 
+                placeholder="test@mintex.com" 
+                aria-label="emailID" 
+                name="emailID"
+                required email emailValidator
+                minlength="5"
+                #emailID="ngModel"
+                [(ngModel)]="userToBeRegistered.emailID"
+                aria-describedby="basic-addon1">
+            </div>
+            <div *ngIf="emailID.touched">
+            <div *ngIf="emailID.errors?.required" class="validationErrorMessage">
+                Email ID is required
+            </div>
+            <div *ngIf="emailID.errors?.email" class="validationErrorMessage">
+                Please enter a valid email ID
+            </div>
+            <div *ngIf="emailID.errors?.minlength" class="validationErrorMessage">
+                Please enter a email ID with atleast 5 characters
+            </div>
+            <div *ngIf="emailID.errors?.mintexEmailValidator" class="validationErrorMessage">
+                Please enter valid email ID for Mintex : test@mintex.com
+            </div>
+            
+            </div>
+            
+            <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Password</span>
+            </div>
+            <input type="password" 
+                class="form-control" 
+                placeholder="Please enter password atleast 5 characters" 
+                aria-label="password" 
+                name="password"
+                #password="ngModel"
+                [(ngModel)]="userToBeRegistered.password"
+                aria-describedby="basic-addon1">
+            </div>
+
+            <button type="submit" [ngClass]="signUpForm.valid ? 'btn btn-success' : 'btn btn-danger'" 
+            [disabled]="!signUpForm.valid" class="float-right">Register</button>
+            <button type="reset" class="btn btn-warning float-right mr-3">Reset</button>
+            </form>
+        </div>
+    </div>
+    

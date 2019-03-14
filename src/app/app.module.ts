@@ -9,6 +9,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { CurrencyConvertorPipe } from './pipes/app.usdToINR.pipe';
 import { LoginModule } from './login/login.module';
 import { FormsModule } from '@angular/forms';
+import { MyCustomPipesSharedModule } from './pipes/app.pipe.module';
+import { SignUpModule } from './sign-up/app.signup.module';
+import { MyCustomDirectivesSharedModule } from './directives/app.directives.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { FormsModule } from '@angular/forms';
     BooksModule,
     HttpClientModule,
     LoginModule,
-    FormsModule
+    FormsModule,
+    MyCustomPipesSharedModule,
+    SignUpModule,
+    MyCustomDirectivesSharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

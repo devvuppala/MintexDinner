@@ -7,14 +7,16 @@ import { menuService } from './app.menu.service';
 import { HttpModule } from '@angular/http';
 import { ValidateInputDirective } from '../directives/app.attr.dir.inputColor';
 import { NgNotIfDirective } from '../directives/app.str.dir.ngNotIf';
+import { MyCustomDirectivesSharedModule } from '../directives/app.directives.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MyCustomDirectivesSharedModule
   ],
-  declarations: [MenuSmartComponent, MenuDishComponent,ValidateInputDirective,NgNotIfDirective],
+  declarations: [MenuSmartComponent, MenuDishComponent],
   providers:[menuService],
   exports:[MenuSmartComponent]
 })

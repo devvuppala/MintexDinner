@@ -8,7 +8,7 @@ import { Form, NgForm } from '@angular/forms';
   templateUrl: './app.books.root.component.html',
   styleUrls: ['./app.books.css']
 })
-export class BooksRootComponent implements OnInit, OnChanges {
+export class BooksRootComponent implements OnInit{
 
     name: string = "Book Component test";
     myBooks: Book[] = [];
@@ -20,6 +20,7 @@ export class BooksRootComponent implements OnInit, OnChanges {
     bookShowCard: boolean = false;
     bookTobeEdited: Book = new Book(0,null,0); 
     bookEditError: boolean = false;
+    searchValue: string = null;
 
     constructor(private bookService : BooksService) {
 

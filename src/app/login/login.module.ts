@@ -3,6 +3,7 @@ import { LoginComponent } from "./login.component";
 import { FormsModule } from "@angular/forms";
 import { UserService } from "../services/app.user.service";
 import { BrowserModule } from "@angular/platform-browser";
+import { MyCustomPipesSharedModule } from "../pipes/app.pipe.module";
 
 //Decorator
 @NgModule({
@@ -11,7 +12,8 @@ import { BrowserModule } from "@angular/platform-browser";
     ],
     imports: [
         FormsModule,
-        BrowserModule
+        BrowserModule,
+        MyCustomPipesSharedModule
     ],
     providers:[UserService],
     exports:[LoginComponent]
