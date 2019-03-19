@@ -25,4 +25,8 @@ export class UserService {
        return this.http.get<User[]>(JSON_SERVICE + "/users");
     }
 
+    getUserByEmailID(emailID: string) : Observable<User> | null  {
+        return this.http.get<User>(JSON_SERVICE + "/users?emailID="+emailID)
+    }
+
 }

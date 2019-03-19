@@ -12,10 +12,10 @@
                 class="form-control" 
                 placeholder="Username" 
                 aria-label="Username" 
-                required
+                required emailAsyncValidator
                 minlength="5"
                 [(ngModel)]="userToBeRegistered.name"
-                name="name"
+                name="name" 
                 #userName="ngModel"
                 aria-describedby="basic-addon1">                
             </div>
@@ -37,7 +37,7 @@
                 placeholder="test@mintex.com" 
                 aria-label="emailID" 
                 name="emailID"
-                required email emailValidator
+                required email emailValidator 
                 minlength="5"
                 #emailID="ngModel"
                 [(ngModel)]="userToBeRegistered.emailID"
@@ -55,6 +55,9 @@
             </div>
             <div *ngIf="emailID.errors?.mintexEmailValidator" class="validationErrorMessage">
                 Please enter valid email ID for Mintex : test@mintex.com
+            </div>
+            <div *ngIf="emailID.errors?.emailNotAvailable" class="validationErrorMessage">
+                {{emailID.value}} is not available
             </div>
             
             </div>
