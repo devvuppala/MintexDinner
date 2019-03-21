@@ -3,6 +3,7 @@ import { NG_VALIDATORS, NG_ASYNC_VALIDATORS, AsyncValidator, FormControl, Valida
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { UserService } from "../services/app.user.service";
+import { User } from "../login/login.user.model";
 
 @Directive({
     selector: '[uniqueEmailValidator]',
@@ -22,9 +23,9 @@ export class EmailAsynchronousValidator implements AsyncValidator {
     validate(control: AbstractControl) : Observable<ValidationErrors | null> | Promise<ValidationErrors | null> {
         console.log("UniqueEmailAsyncValidation : " + control.value)
         return this.userService.getUserByEmailID(control.value).pipe( 
-            map(user =>  {
-                console.log("Available" + user)
-                 return user != null ? {'emailNotAvailable' : true} : {'emailNotAvailable' : false};
+            map((users : User[]) =>  {
+                console.log("Available" + users)
+                 return users.length > 0 ? {'emailNotAvailable' : true} : null;
             })
         )
     }

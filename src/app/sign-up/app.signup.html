@@ -12,7 +12,7 @@
                 class="form-control" 
                 placeholder="Username" 
                 aria-label="Username" 
-                required emailAsyncValidator
+                required 
                 minlength="5"
                 [(ngModel)]="userToBeRegistered.name"
                 name="name" 
@@ -37,12 +37,13 @@
                 placeholder="test@mintex.com" 
                 aria-label="emailID" 
                 name="emailID"
-                required email emailValidator 
+                required email uniqueEmailValidator
                 minlength="5"
                 #emailID="ngModel"
                 [(ngModel)]="userToBeRegistered.emailID"
                 aria-describedby="basic-addon1">
             </div>
+            <!-- {{emailID.errors | json}} -->
             <div *ngIf="emailID.touched">
             <div *ngIf="emailID.errors?.required" class="validationErrorMessage">
                 Email ID is required
@@ -75,7 +76,10 @@
                 [(ngModel)]="userToBeRegistered.password"
                 aria-describedby="basic-addon1">
             </div>
-
+{{userName.errors | json}}
+{{emailID.errors | json}}
+{{password.errors | json}}
+{{signUpForm.valid}}
             <button type="submit" [ngClass]="signUpForm.valid ? 'btn btn-success' : 'btn btn-danger'" 
             [disabled]="!signUpForm.valid" class="float-right">Register</button>
             <button type="reset" class="btn btn-warning float-right mr-3">Reset</button>

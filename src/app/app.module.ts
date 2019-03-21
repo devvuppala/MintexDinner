@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { MyCustomPipesSharedModule } from './pipes/app.pipe.module';
 import { SignUpModule } from './sign-up/app.signup.module';
 import { MyCustomDirectivesSharedModule } from './directives/app.directives.module';
+import { SignUpReactiveModule } from './sign-up-reactive/app.sign-up-reactive.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MyCustomDirectivesSharedModule } from './directives/app.directives.modu
     FormsModule,
     MyCustomPipesSharedModule,
     SignUpModule,
-    MyCustomDirectivesSharedModule
+    MyCustomDirectivesSharedModule,
+    SignUpReactiveModule
   ],
   providers: [],
   bootstrap: [AppComponent]

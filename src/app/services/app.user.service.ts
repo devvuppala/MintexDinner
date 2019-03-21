@@ -26,7 +26,7 @@ export class UserService {
     }
 
     getUserByEmailID(emailID: string) : Observable<User> | null  {
-        return this.http.get<User>(JSON_SERVICE + "/users?emailID="+emailID)
+        return this.http.get<User>(JSON_SERVICE + "/users?emailID_like="+emailID)
     }
 
 }

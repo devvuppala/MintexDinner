@@ -1,0 +1,101 @@
+<div>
+    <form [formGroup]="userForm" (ngSubmit)="submitForm()">
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Username</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Sizing example input" formControlName="username"
+                aria-describedby="inputGroup-sizing-sm">
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Sizing example input" formControlName="emailID"
+                aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <div *ngIf="userForm.get('emailID')?.touched || userForm.get('emailID')?.dirty">
+            <div *ngIf="userForm.get('emailID').errors?.required">
+                <div class="alert alert-danger">Email ID is Required </div>                
+            </div>
+            <div *ngIf="userForm.get('emailID').errors?.email">
+                    <div class="alert alert-danger">Please enter a valid Email ID (should have @)</div>                
+            </div>
+            <div *ngIf="userForm.get('emailID').errors?.mintexEmailValidatorFailed">
+                <div class="alert alert-danger">Please enter a valid Email ID Ex: test@mintex.com </div>                
+            </div>
+            <div *ngIf="userForm.get('emailID').errors?.emailNotAvailable">
+                <div class="alert alert-danger">{{userForm.get('emailID')?.value | json}} is not available </div>                
+            </div>
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
+            </div>
+            <input type="password" class="form-control" aria-label="Sizing example input" formControlName="password"
+                aria-describedby="inputGroup-sizing-sm">
+        </div>
+        {{userForm.get('password')?.errors | json}}
+        <div *ngIf="userForm.get('password')?.touched || userForm.get('password')?.dirty">
+                <div *ngIf="userForm.get('password').errors?.required">
+                    <div class="alert alert-danger">Password is Required </div>                
+                </div>
+                <div *ngIf="userForm.get('password').errors?.pattern">
+                        <div class="alert alert-danger">Pattern Not matched</div>                
+                </div>
+            </div>
+        <div formGroupName="address">
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Street</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Sizing example input" formControlName="street"
+                    aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Street</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Sizing example input" formControlName="street"
+                    aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">City</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Sizing example input" formControlName="city"
+                    aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">State</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Sizing example input" formControlName="state"
+                    aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Zip Code</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Sizing example input" formControlName="zipCode"
+                    aria-describedby="inputGroup-sizing-sm">
+            </div>
+        </div>
+
+        <button class="btn btn-success float-right" >Submit</button>
+        <br><br><br>
+<div class="card">
+    <div class="card-body">
+        {{userForm.get('username')?.value | json}}
+            {{username?.errors | json}}<br>
+            {{userForm.valid}}
+    </div>
+</div>
+        <!-- {{userForm.value | json}} -->
+    
+    </form>
+
+    
+</div>
