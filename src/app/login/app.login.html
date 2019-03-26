@@ -1,4 +1,4 @@
-<!--
+
 <div class="container" style="border: 1px solid;padding: 1%;">
     <div class="card">
         <div class="card-header">
@@ -28,12 +28,14 @@
         </div>
         <div class="card-footer">
             
-                <button  class="btn btn-primary" (click)="loginUser()">Login</button>
+                <button  class="btn btn-success" (click)="loginUser()">Login</button>
+                
+                <button class="btn btn-primary" style="margin-left: 5%"  (click)="navigateToRegisterPage()">Register</button>
         </div>
     </div>
 
-</div>-->
-<input type="text" class="form-control" [(ngModel)]="searchEmailIDValue" aria-label="Enter emailID">
+</div>
+<!-- <input type="text" class="form-control" [(ngModel)]="searchEmailIDValue" aria-label="Enter emailID">
 <table class="table table-striped table-dark">
         <thead>
           <tr>
@@ -47,4 +49,4 @@
             <td>{{user.emailID}}</td>
           </tr>
         </tbody>
-      </table>
+      </table> -->

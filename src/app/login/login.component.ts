@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { User } from "./login.user.model";
 import { UserService } from "../services/app.user.service";
 import { ComponentFactoryResolver } from "@angular/core/src/render3";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
     selector: 'app-login',
@@ -22,7 +23,9 @@ export class LoginComponent implements OnInit {
         password: null,
     };
 
-    constructor(private userService : UserService) {
+    constructor(private userService : UserService,
+        private routingService : ActivatedRoute,
+        private routerService : Router) {
 
     }
 
@@ -49,5 +52,9 @@ export class LoginComponent implements OnInit {
             console.log(users)
             this.usersFromDB = users;
         })
+    }
+
+    navigateToRegisterPage() {
+       this.routerService.navigate(["/register"]) ;
     }
 }

@@ -15,7 +15,7 @@
 
 <div class="card">
     <div class="card-header">
-        All  my navigatios go here: We are going to learn this in Router module
+        <app-navigation></app-navigation>
     </div>
     <div class="card-body">
         <!-- <app-login></app-login> 
@@ -26,7 +26,14 @@
         <br> -->
         <!-- <app-books-root></app-books-root> -->
         <!-- <app-sign-up>Loading.........</app-sign-up> -->
-        <app-sign-up-reactive></app-sign-up-reactive>
+        <!-- <app-sign-up-reactive></app-sign-up-reactive> -->
+        <router-outlet>
+                <div class="d-flex align-items-center">
+                <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+                </div>
+
+
+        </router-outlet>
     </div>
     <div class="card-footer text-muted">
             @copyright Mintex tech {{now | date : 'MM-dd-yyyy hh:mm:ss a'}}
