@@ -25,8 +25,14 @@ export class UserService {
        return this.http.get<User[]>(JSON_SERVICE + "/users");
     }
 
-    getUserByEmailID(emailID: string) : Observable<User> | null  {
-        return this.http.get<User>(JSON_SERVICE + "/users?emailID_like="+emailID)
+    getUserByEmailID(emailID: string) : Observable<User[]> | null  {
+        return this.http.get<User[]>(JSON_SERVICE + "/users?emailID_like="+emailID)
+    }
+
+    validateUserForlogin(user: User): Observable<User[]> {
+        let parameter = "emailID=" + user.emailID + "&password=" + user.password
+        let returnedUser: User[] = [];
+        return this.http.get<User[]>(JSON_SERVICE + "/users?" + parameter);
     }
 
 }

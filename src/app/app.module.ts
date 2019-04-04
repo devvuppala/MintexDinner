@@ -15,10 +15,12 @@ import { SignUpModule } from './sign-up/app.signup.module';
 import { MyCustomDirectivesSharedModule } from './directives/app.directives.module';
 import { SignUpReactiveModule } from './sign-up-reactive/app.sign-up-reactive.module';
 import { AppRoutingModule } from './routing/app.routing.module';
+import { SpringBootTestComponent } from './springboot-test/app.springboot-test.componenet';
+import { SpringBootUserService } from './springboot-test/app.springboot.user.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, SpringBootTestComponent
   ],
   imports: [
     BrowserModule,
@@ -33,9 +35,9 @@ import { AppRoutingModule } from './routing/app.routing.module';
     MyCustomDirectivesSharedModule,
     SignUpReactiveModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [SpringBootUserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

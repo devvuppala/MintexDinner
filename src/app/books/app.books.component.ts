@@ -2,11 +2,11 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { BooksService } from '../services/app.book.service';
 import { Book } from './app.book.model';
 import { Form, NgForm } from '@angular/forms';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-books-root',
   templateUrl: './app.books.root.component.html',
-  styleUrls: ['./app.books.css']
+  styleUrls: ['./app.books.scss']
 })
 export class BooksRootComponent implements OnInit{
 
@@ -21,8 +21,10 @@ export class BooksRootComponent implements OnInit{
     bookTobeEdited: Book = new Book(0,null,0); 
     bookEditError: boolean = false;
     searchValue: string = null;
+    view: string = 'grid';
 
-    constructor(private bookService : BooksService) {
+    constructor(private bookService : BooksService ,
+        private router : Router) {
 
     }
 
@@ -96,5 +98,14 @@ export class BooksRootComponent implements OnInit{
                 this.myBooks = booksFromDB;
             })
         })
+    }
+
+    toggleGridOrCardView(view : string) {
+        console.log(view);
+        this.view = view;
+    }
+
+    navigateToSprinBoot() {
+        this.router.navigate(["/springBootService"]);
     }
 }

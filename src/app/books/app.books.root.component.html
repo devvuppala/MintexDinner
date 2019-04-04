@@ -1,4 +1,5 @@
 <div class="card">
+    <button class="btn btn-danger" (click)="navigateToSprinBoot()">Navigae To SpringBoot</button>
     <div class="card-header" style="background-color: wheat">
             <i class="text-left">Books</i>
             <button class="btn btn-success float-right" (click)="enableOrDisableCard()">&nbsp;Add(+)&nbsp;</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -12,28 +13,53 @@
             </div>
         
     </div>
-    <div class="card-body">
-    <table class="table table-bordered shadow" >
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Price($)</th>
-            <th scope="col">Price(INR)</th>
-            <th scope="col">Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let book of myBooks | myCustomFilterPipe : searchValue : 'name'">
-        <th scope="row">{{book.id}}</th>
-        <td>{{book.name | uppercase }}</td>
-        <td>{{book.price | currency : 'USD' : 'symbol'}}</td>
-        <td>{{book.price | myCurrencyConvertor : 'usDollar' : 'INR' | currency : 'INR' : 'symbol'}}</td>
-        <td><button class="btn btn-danger" (click)="deleteBook(book)">&nbsp;X&nbsp;</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="btn btn-warning" (click)="editABook(book)">&nbsp;Edit&nbsp;</button></td>
-        </tr>
-    </tbody>
-    </table>
+    <div class="float-right">
+    <img class="float-right" src="/assets/baseline-view_list-24px.svg" width="5%" (click)="toggleGridOrCardView('list')">
+    <img class="float-right" src="/assets/baseline-view_module-24px.svg"  width="5%"  (click)="toggleGridOrCardView('grid')">
+    </div>
+    <div [ngSwitch]="view">
+    
+    <div class="card-columns mr-5"  *ngSwitchCase="'list'">
+        <ng-container  *ngFor="let book of myBooks | myCustomFilterPipe : searchValue : 'name'">
+        <div class="card m-3">
+        <div class="card-header">
+            {{book.name | uppercase }}
+        </div>
+        <div class="card-body">
+            Dollars:  {{book.price | currency : 'USD' : 'symbol'}}
+            <br>
+            Rupees: {{book.price | myCurrencyConvertor : 'usDollar' : 'INR' | currency : 'INR' : 'symbol'}}
+        </div>
+        <div class="card-footer">
+                <button class="btn btn-danger" (click)="deleteBook(book)">&nbsp;X&nbsp;</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-warning" (click)="editABook(book)">&nbsp;Edit&nbsp;</button>
+        </div>
+        </div> 
+        </ng-container>
+    </div>     
+        <div class="card-body"  *ngSwitchCase="'grid'">
+        <table class="table table-bordered shadow" >
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price($)</th>
+                <th scope="col">Price(INR)</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let book of myBooks | myCustomFilterPipe : searchValue : 'name'">
+            <th scope="row">{{book.id}}</th>
+            <td>{{book.name | uppercase }}</td>
+            <td>{{book.price | currency : 'USD' : 'symbol'}}</td>
+            <td>{{book.price | myCurrencyConvertor : 'usDollar' : 'INR' | currency : 'INR' : 'symbol'}}</td>
+            <td><button class="btn btn-danger" (click)="deleteBook(book)">&nbsp;X&nbsp;</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-warning" (click)="editABook(book)">&nbsp;Edit&nbsp;</button></td>
+            </tr>
+        </tbody>
+        </table>
+        </div>
     </div>
 </div>
 <div class="card shadow" *ngIf="showAddCard ">

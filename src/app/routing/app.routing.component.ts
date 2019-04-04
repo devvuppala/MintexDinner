@@ -8,4 +8,13 @@ import { Component } from "@angular/core";
 
 export class NavigationComponent {
 
+    getWhoLoggedIn() {
+        let whoLoggedIn = sessionStorage.getItem("userName");
+        if(whoLoggedIn != null) {
+         return whoLoggedIn
+       } else {
+         return null;
+       }
+     }
+
 }

@@ -40,8 +40,23 @@ export class LoginComponent implements OnInit {
         //         this.loginSucess = false;
         //     }
         // })
-        let returneUser = this.userService.validateUser(this.user);
-        console.log(returneUser)
+        //let returneUser = this.userService.validateUser(this.user);
+       // console.log(returneUser)
+       this.userService.validateUserForlogin(this.user).subscribe((users: User[]) => {
+            console.log(users);
+            if(users != null && users.length > 0) {
+                //Login the user and navigate him to home page
+                sessionStorage.setItem("loggedIn", "true");
+                sessionStorage.setItem("userName",users[0].name);
+                localStorage.setItem("localTest","Testing the local storage");
+                this.routerService.navigate(["/books"]);
+                
+            } else {
+                //Throw an error Message
+                this.loginMessage = "Login Failed";
+                this.loginSucess = false;
+            }
+       })
     }
 
     ngOnInit() {
