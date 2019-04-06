@@ -1,16 +1,16 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MyCustomFilterPipe } from './app.filter.pipe';
 import { CurrencyConvertorPipe } from './app.usdToINR.pipe';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     MyCustomFilterPipe, CurrencyConvertorPipe
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     HttpClientModule,
     FormsModule
   ],

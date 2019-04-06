@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MenuModule } from './menu/menu.module';
 import { AdsModule } from './advertisement/ads.module';
-import { BooksModule } from './books/app.books.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router'
 import { CurrencyConvertorPipe } from './pipes/app.usdToINR.pipe';
@@ -26,7 +25,7 @@ import { SpringBootUserService } from './springboot-test/app.springboot.user.ser
     BrowserModule,
     MenuModule,
     AdsModule,
-    BooksModule,
+    //BooksModule,
     HttpClientModule,
     LoginModule,
     FormsModule,

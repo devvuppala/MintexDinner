@@ -6,12 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { MyCustomPipesSharedModule } from '../pipes/app.pipe.module';
 import { SignUpComponent } from './app.signup.component';
 import { MyCustomDirectivesSharedModule } from '../directives/app.directives.module';
+import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     SignUpComponent
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     HttpClientModule,
     FormsModule,
     MyCustomPipesSharedModule,

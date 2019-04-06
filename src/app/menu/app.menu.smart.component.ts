@@ -31,8 +31,8 @@ export class MenuSmartComponent{
     priceDifference: number = 0;
 
     ngOnInit() {
-        this.menuService.getDishes().subscribe((value) => {
-            this.menu = value.json() as Dish[];
+        this.menuService.getDishes().subscribe((dishes: Dish[]) => {
+            this.menu = dishes;
         });
       console.log('ngOnInint')  ;
         

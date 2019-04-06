@@ -6,13 +6,14 @@ import { ValidateInputDirective } from './app.attr.dir.inputColor';
 import { NgNotIfDirective } from './app.str.dir.ngNotIf';
 import { MyCustomEmailValidator } from './app.email.validate.directive';
 import { EmailAsynchronousValidator } from './app.email.async.validator';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     ValidateInputDirective, NgNotIfDirective, MyCustomEmailValidator, EmailAsynchronousValidator
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     HttpClientModule,
     FormsModule
   ],

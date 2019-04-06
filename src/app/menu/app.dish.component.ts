@@ -5,7 +5,7 @@ import { Dish } from "./app.dish.model";
     selector:'menu-dish',
     template:`  
             
-        {{myDishHere.name}}
+        <a href="/menus/{{myDishHere.id}}"> {{myDishHere.name}}</a><br>
         {{myDishHere.price + priceDifference | currency : 'INR' : true}}
         <div class="input-group mb-3">
         <div class="input-group-prepend">

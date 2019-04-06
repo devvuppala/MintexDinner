@@ -9,12 +9,13 @@ import { SignUpReactiveComponent } from './app.signup-reactive.component';
 import { SignUpReactiveFormSyncValidators } from './app.signup-reactive.sync.validators';
 import { SignUpAsyncValidators } from './app.signup-reactive.asyncValidators';
 import { UserService } from '../services/app.user.service';
+import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     SignUpReactiveComponent
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
