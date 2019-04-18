@@ -3,6 +3,7 @@ import { User } from "./login.user.model";
 import { UserService } from "../services/app.user.service";
 import { ComponentFactoryResolver } from "@angular/core/src/render3";
 import { ActivatedRoute, Router } from "@angular/router";
+import { LanguageService } from "../services/app.language.service";
 
 @Component({
     selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
     loginSucess: boolean = false;
     usersFromDB: User[] = [];
     searchEmailIDValue: string = null;
+    languageSelected: string  = 'eng';
     user: User = {
         id: 0,
         name: null,
@@ -25,7 +27,8 @@ export class LoginComponent implements OnInit {
 
     constructor(private userService : UserService,
         private routingService : ActivatedRoute,
-        private routerService : Router) {
+        private routerService : Router,
+        private languageService : LanguageService) {
 
     }
 
@@ -60,7 +63,10 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getUsers()
+        this.getUsers();
+        this.languageService.language.subscribe((languageSelected: string) => {
+            this.languageSelected = languageSelected;
+        })
     }
     getUsers() {
         this.userService.getAllUsers().subscribe((users: User[]) => {

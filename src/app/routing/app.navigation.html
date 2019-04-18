@@ -4,7 +4,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
+          <ul class="navbar-nav"  *ngIf="language == 'eng'">
             <li class="nav-item active">
               <a class="nav-link" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Home <span class="sr-only">(current)</span></a>
             </li>
@@ -19,6 +19,24 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" style="color:red" routerLink="/logout" routerLinkActive="active-link"  [routerLinkActiveOptions]="{exact:true}">Sign off</a>
+              </li>
+          </ul>
+
+          <ul class="navbar-nav" *ngIf="language == 'spn'">
+            <li class="nav-item active">
+              <a class="nav-link" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">Casa <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/books" routerLinkActive="active-link"  [routerLinkActiveOptions]="{exact:true}">Boosa</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/menus" routerLinkActive="active-link"  [routerLinkActiveOptions]="{exact:true}">Menu-spanish Menu</a>
+              </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/springBootService" routerLinkActive="active-link"  [routerLinkActiveOptions]="{exact:true}">Test Springboot service - Spn</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" style="color:red" routerLink="/logout" routerLinkActive="active-link"  [routerLinkActiveOptions]="{exact:true}">adios</a>
               </li>
           </ul>
           

@@ -5,6 +5,7 @@ import { UserService } from "../services/app.user.service";
 import { MyCustomPipesSharedModule } from "../pipes/app.pipe.module";
 import { LogoutComponent } from "./logout.component";
 import { CommonModule } from "@angular/common";
+import { LanguageService } from "../services/app.language.service";
 
 //Decorator
 @NgModule({
@@ -16,7 +17,7 @@ import { CommonModule } from "@angular/common";
         CommonModule,
         MyCustomPipesSharedModule
     ],
-    providers:[UserService],
+    providers:[UserService, LanguageService],
     exports:[LoginComponent]
 })
 

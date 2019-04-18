@@ -16,6 +16,10 @@
 <div class="card">
     <div class="card-header" *ngIf="checkIfLoggedIn()">
         <app-navigation></app-navigation>
+        <select class="custom-select float-right" style="width: 40%" (change)="handleLanguageChange($event.target.value)">
+            <option selected value="eng">English</option>
+            <option value="spn">Spanish</option>
+          </select>
     </div>
     <div class="card-body">
         <!-- <app-login></app-login> 

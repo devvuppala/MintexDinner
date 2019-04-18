@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges, SimpleChanges } from "@angular/core";
 import { Dish } from "./app.dish.model";
 import { MenuDishComponent } from "./app.dish.component";
 import { menuService } from "./app.menu.service";
+import { SubscriptionLike, Observable, Observer } from "rxjs";
 
 @Component({
     selector:'menu-smart-comp',
@@ -35,6 +36,44 @@ export class MenuSmartComponent{
             this.menu = dishes;
         });
       console.log('ngOnInint')  ;
+
+      
+    //Observable will fire after 3 sec, after 5 sec and fails after 7 and complete after 9 second
+ 
+    const observableTest = Observable.create((observer: Observer<string>) => {      
+
+        setTimeout(() => {
+          observer.next('Data Package : 1') // Pushes the next data packet
+        }, 5000); // 5th second
+        
+        setTimeout(() => {
+          observer.next('Data Package : 2') // Pushes the next data packet
+        }, 3000); // 3rd second
+        
+        setTimeout(() => {
+          //observer.error('Data Package ERROR') // Pushes the next data packet
+        }, 7000); // 7th second
+        
+        setTimeout(() => {
+        //observer.complete(); // Complete the observable
+          console.log('9000');
+        }, 9000);// 9th second
+
+        setInterval(() => {
+            observer.next("Data packet")
+        }, 1000)
+        
+        setTimeout(() => {
+          observer.next('Data Package : 4') // Pushes the next data packet, Thill will be never invoked as we are completing the observable at 9th second
+        }, 11000);// 11thth second
+      });
+
+      //write observable handler by subsribing to it
+       this.customObservableSubscription = observableTest.subscribe(
+        (data: string) => { console.log("Data : " +data); } , // Return Data
+        (error: string) => { console.log("ERROR : " + error); } , // Error
+        () => { console.log('Completed'); } // Completed , this will be invoked once completed , but will not retrun anything here
+      ) 
         
     }
 
@@ -89,4 +128,11 @@ export class MenuSmartComponent{
     decreasePrice() {
         this.priceDifference = this.priceDifference - 1;
     }
+
+    
+
+  customObservableSubscription : SubscriptionLike;
+  ngOnDestroy() {
+    this.customObservableSubscription.unsubscribe();
+  }
 }

@@ -17,6 +17,7 @@ import { SingleDishComponent } from '../menu/app.single.dish.component';
 import { LoginGuard } from './app.login.guard.service';
 import { CommonModule } from '@angular/common';
 import { Canloadguard } from './app.can.load.guard.service';
+import { LanguageService } from '../services/app.language.service';
 const appRoutes : Routes = [
     {path:'', component: LoginComponent},
     {path:'login', component: LoginComponent},
@@ -48,7 +49,7 @@ const appRoutes : Routes = [
     MyCustomDirectivesSharedModule,
     RouterModule.forRoot(appRoutes) //,{useHash: true}
   ],
-  providers: [LoginGuard, Canloadguard],
+  providers: [LoginGuard, Canloadguard, LanguageService],
   exports:[NavigationComponent]
 })
 

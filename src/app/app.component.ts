@@ -1,4 +1,6 @@
-import { Component, OnInit, OnChanges, AfterViewChecked, AfterViewInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, OnChanges, AfterViewChecked, AfterViewInit, AfterContentInit, OnDestroy } from '@angular/core';
+import { SubscriptionLike, Observable, Observer } from 'rxjs';
+import { LanguageService } from './services/app.language.service';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +10,17 @@ import { Component, OnInit, OnChanges, AfterViewChecked, AfterViewInit, AfterCon
 export class AppComponent {
   title = 'Mintex-dinner';
 
-  now : Date = new Date();
+  now: Date = new Date();
   loggedIn: boolean = false;
   whoLoggedIn: string;
 
+  constructor(private appLanguageService : LanguageService) {
+
+  }
 
   checkIfLoggedIn() {
     let loggedInValidation = sessionStorage.getItem("loggedIn");
-    if(loggedInValidation === "true") {
+    if (loggedInValidation === "true") {
       return true;
     } else {
       return false;
@@ -25,6 +30,16 @@ export class AppComponent {
   getvalue() {
     return localStorage.getItem("localTest");
   }
+
+  handleLanguageChange(language: string) {
+    this.appLanguageService.language.next(language);
+  }
+
+
+
+
+
+    
 
  
 

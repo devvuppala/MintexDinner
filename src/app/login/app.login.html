@@ -5,32 +5,58 @@
             {{loginHeaderText}}
             
         </div>
-        <div class="card-body">
+        <div class="card-body"  *ngIf="languageSelected == 'spn'">
             <div class="alert alert-success" role="alert" *ngIf="loginMessage != null && loginSucess">
-                    {{loginMessage}}
+                    {{loginMessage}} -  (in spanish)
             </div>
             <div class="alert alert-danger" role="alert" *ngIf="loginMessage != null && !loginSucess">
-                    {{loginMessage}}
+                    {{loginMessage}} -  (in spanish)
             </div><br>
             <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
+                <label for="exampleInputEmail1">Email address (in spanish)</label>
                 <input type="email" #emailRef [(ngModel)]="user.emailID" class="form-control"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
+                <label for="exampleInputPassword1">Password (in spanish)</label>
                 <input type="password" #passwordRef [(ngModel)]="user.password" class="form-control" id="exampleInputPassword1" placeholder="Password">
             </div>
             <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                <label class="form-check-label" for="exampleCheck1">Check me out (in spanish)</label>
             </div>
         </div>
+
+        <div class="card-body" *ngIf="languageSelected == 'eng'">
+          <div class="alert alert-success" role="alert" *ngIf="loginMessage != null && loginSucess">
+                  {{loginMessage}}
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="loginMessage != null && !loginSucess">
+                  {{loginMessage}}
+          </div><br>
+          <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" #emailRef [(ngModel)]="user.emailID" class="form-control"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" #passwordRef [(ngModel)]="user.password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div>
+      </div>
         <div class="card-footer">
             
-                <button  class="btn btn-success" (click)="loginUser()">Login</button>
+                <button   *ngIf="languageSelected == 'spn'" class="btn btn-success" (click)="loginUser()">Login(In spanish)</button>
                 
-                <button class="btn btn-primary" style="margin-left: 5%"  (click)="navigateToRegisterPage()">Register</button>
+                <button  *ngIf="languageSelected == 'spn'" class="btn btn-primary" style="margin-left: 5%"  (click)="navigateToRegisterPage()">Register(In spanish)</button>
+
+                <button   *ngIf="languageSelected == 'eng'" class="btn btn-success" (click)="loginUser()">Login</button>
+                
+                <button  *ngIf="languageSelected == 'eng'" class="btn btn-primary" style="margin-left: 5%"  (click)="navigateToRegisterPage()">Register</button>
         </div>
     </div>
 

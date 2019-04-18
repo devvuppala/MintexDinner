@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { LanguageService } from "../services/app.language.service";
 
 @Component({
     selector:'app-navigation',
@@ -6,7 +7,12 @@ import { Component } from "@angular/core";
     styleUrls:['app.navigation.scss']
 })
 
-export class NavigationComponent {
+export class NavigationComponent implements OnInit {
+
+  language: string = 'eng';
+  constructor(private appLanguageService : LanguageService) {
+
+  }
 
     getWhoLoggedIn() {
         let whoLoggedIn = sessionStorage.getItem("userName");
@@ -16,5 +22,13 @@ export class NavigationComponent {
          return null;
        }
      }
+
+
+     ngOnInit() {
+      this.appLanguageService.language.subscribe((languageSent: string) => {
+        this.language = languageSent;
+      })
+     }
+
 
 }
