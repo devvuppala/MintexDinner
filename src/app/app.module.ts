@@ -17,6 +17,7 @@ import { AppRoutingModule } from './routing/app.routing.module';
 import { SpringBootTestComponent } from './springboot-test/app.springboot-test.componenet';
 import { SpringBootUserService } from './springboot-test/app.springboot.user.service';
 import { LanguageService } from './services/app.language.service';
+import { ProductModule } from './product/product.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { LanguageService } from './services/app.language.service';
     SignUpReactiveModule,
     RouterModule,
     AppRoutingModule,
+    ProductModule
   ],
   providers: [SpringBootUserService, , LanguageService],
   bootstrap: [AppComponent]

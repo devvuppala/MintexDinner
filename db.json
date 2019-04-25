@@ -74,5 +74,22 @@
       "emailID": "rashmi@mintex.com",
       "password": "angular"
     }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "laptop",
+      "price": 5999.99
+    },
+    {
+      "id": 2,
+      "name": "iphone",
+      "price": 15000.99
+    },
+    {
+      "id": 3,
+      "name": "desktop",
+      "price": 99999.99
+    }
   ]
 }

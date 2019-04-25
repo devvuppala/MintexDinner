@@ -1,17 +1,18 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ApplicationRef, ChangeDetectionStrategy } from "@angular/core";
 import { User } from "./login.user.model";
 import { UserService } from "../services/app.user.service";
-import { ComponentFactoryResolver } from "@angular/core/src/render3";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LanguageService } from "../services/app.language.service";
 
 @Component({
     selector: 'app-login',
     templateUrl:'app.login.html',
-    styleUrls:['app.login.css']
+    styleUrls:['app.login.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class LoginComponent implements OnInit {
+    
     loginHeaderText = "Login";
     loginMessage: string = null;
     loginSucess: boolean = false;
@@ -28,7 +29,8 @@ export class LoginComponent implements OnInit {
     constructor(private userService : UserService,
         private routingService : ActivatedRoute,
         private routerService : Router,
-        private languageService : LanguageService) {
+        private languageService : LanguageService,
+        private appRef: ApplicationRef) {
 
     }
 
@@ -67,6 +69,7 @@ export class LoginComponent implements OnInit {
         this.languageService.language.subscribe((languageSelected: string) => {
             this.languageSelected = languageSelected;
         })
+        this.appRef.tick();
     }
     getUsers() {
         this.userService.getAllUsers().subscribe((users: User[]) => {

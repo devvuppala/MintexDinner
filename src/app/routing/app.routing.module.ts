@@ -18,10 +18,12 @@ import { LoginGuard } from './app.login.guard.service';
 import { CommonModule } from '@angular/common';
 import { Canloadguard } from './app.can.load.guard.service';
 import { LanguageService } from '../services/app.language.service';
+import { ProductComponent } from '../product/product.component';
 const appRoutes : Routes = [
     {path:'', component: LoginComponent},
     {path:'login', component: LoginComponent},
     {path:'register', component: SignUpComponent , canActivate: [LoginGuard]},
+    {path:'products', component: ProductComponent , canActivate: [LoginGuard]},
     {path:'books' , loadChildren: '../books/app.books.module#BooksModule' , canLoad: [Canloadguard]},
     {path:'springBootService', component: SpringBootTestComponent , canActivate: [LoginGuard]},
     {path:'logout', component: LogoutComponent , canActivate: [LoginGuard]},
