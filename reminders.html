@@ -1067,6 +1067,7 @@ function save() {
     localStorage.setItem('rm_reminders', JSON.stringify(reminders));
     localStorage.setItem('rm_notes',     JSON.stringify(notes));
     localStorage.setItem('rm_fired',     JSON.stringify([...fired]));
+    syncRemindersToSW();
 }
 
 function load() {
@@ -1745,13 +1746,6 @@ async function tryPeriodicSync() {
             }
         }
     } catch (_) {}
-}
-
-// Patch save() so every data change also syncs to the SW
-const _origSave = save;
-function save() {
-    _origSave();
-    syncRemindersToSW();
 }
 
 registerSW();
