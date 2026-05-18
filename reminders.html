@@ -2,7 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Reminders">
+    <meta name="theme-color" content="#7C5339">
+    <link rel="manifest" href="manifest.json">
     <title>Reminders & Notes</title>
     <style>
         :root {
@@ -1699,6 +1705,56 @@ function init() {
 }
 
 init();
+
+// ═══════════════════════════════════════════════
+// SERVICE WORKER — background notifications
+// ═══════════════════════════════════════════════
+let swReg = null;
+
+async function registerSW() {
+    if (!('serviceWorker' in navigator)) return;
+    try {
+        swReg = await navigator.serviceWorker.register('sw.js');
+        swReg.addEventListener('updatefound', () => {
+            swReg.installing?.addEventListener('statechange', e => {
+                if (e.target.state === 'activated') syncRemindersToSW();
+            });
+        });
+        await navigator.serviceWorker.ready;
+        syncRemindersToSW();
+        tryPeriodicSync();
+    } catch (e) {
+        console.warn('SW registration failed:', e);
+    }
+}
+
+function syncRemindersToSW() {
+    const ctrl = navigator.serviceWorker?.controller;
+    if (ctrl) {
+        ctrl.postMessage({ type: 'SYNC_REMINDERS', reminders });
+    }
+}
+
+async function tryPeriodicSync() {
+    try {
+        const reg = await navigator.serviceWorker.ready;
+        if ('periodicSync' in reg) {
+            const status = await navigator.permissions.query({ name: 'periodic-background-sync' });
+            if (status.state === 'granted') {
+                await reg.periodicSync.register('check-reminders', { minInterval: 15 * 60 * 1000 });
+            }
+        }
+    } catch (_) {}
+}
+
+// Patch save() so every data change also syncs to the SW
+const _origSave = save;
+function save() {
+    _origSave();
+    syncRemindersToSW();
+}
+
+registerSW();
 </script>
 </body>
 </html>
